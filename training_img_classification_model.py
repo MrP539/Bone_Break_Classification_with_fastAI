@@ -1,3 +1,5 @@
+#conda environment : Machine_learning_AI_builders
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import fastai.vision.all
@@ -7,7 +9,7 @@ import torch
 
 fields = fastai.vision.all.DataBlock(
     blocks=(fastai.vision.all.ImageBlock,fastai.vision.all.CategoryBlock),
-    get_items = fastai.vision.all.get_image_files,
+    get_items = fastai.vision.all.get_image_files,                       # ใช้ get_items ในการดึงภาพออกมาจากโฟลเดอร์ โดย get_image_files เป็นฟังก์ชันของ FastAI ที่ใช้หา path ภาพในโฟลเดอร์ที่กำหนด
     get_y = fastai.vision.all.parent_label,
     splitter = fastai.vision.all.RandomSplitter(valid_pct=0.2,seed=42),
     item_tfms=fastai.vision.all.RandomResizedCrop(224,min_scale = 0.5),
@@ -24,7 +26,7 @@ csv_logger = fastai.vision.all.CSVLogger("result.csv")
 learner = fastai.vision.all.vision_learner(dls=dls,arch=fastai.vision.all.resnet50,metrics=[fastai.vision.all.error_rate,fastai.vision.all.accuracy],cbs=csv_logger)
 # lr = learner.lr_find()
 # print(lr)
-learner.fine_tune(epochs=100,freeze_epochs = 1,base_lr = 3e-3)
+learner.fine_tune(epochs=1,freeze_epochs = 1,base_lr = 3e-3)
 learner.remove_cb(csv_logger)
 learner.export("model.pkl")
 
