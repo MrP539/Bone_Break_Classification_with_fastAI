@@ -1,4 +1,4 @@
-![Figure_3](https://github.com/user-attachments/assets/9730ed95-8dcf-46fa-ad03-7b5966fb5da0)# Result
+# Result
 
 ## resnet34(100epochs)
 
